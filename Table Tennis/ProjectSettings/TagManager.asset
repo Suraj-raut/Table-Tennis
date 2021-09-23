@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Walls
+  - Bot
   layers:
   - Default
   - TransparentFX
