@@ -7,6 +7,8 @@ TagManager:
   - Ball
   - Walls
   - Bot
+  - Out
+  - Net
   layers:
   - Default
   - TransparentFX

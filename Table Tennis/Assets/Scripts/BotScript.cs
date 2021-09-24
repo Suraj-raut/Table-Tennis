@@ -16,11 +16,13 @@ public class BotScript : MonoBehaviour
 	
 	private float force = 3f;
 	
+	
+	
 	void Start()
 	{
 		targetPosition = transform.position;
 		animator = GetComponent<Animator>();
-		animator.Play("idle");
+	
 	}
 	
 	void Update()
@@ -59,6 +61,9 @@ public class BotScript : MonoBehaviour
 			}
 			else
 			    animator.Play("LeftSwing");
+			
+			ball.GetComponent<BallScript>().hitter = "Bot";
+			ball.GetComponent<BallScript>().isPlaying = true;
 		}
 	}
 }

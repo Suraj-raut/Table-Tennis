@@ -1,28 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallScript : MonoBehaviour
 {
    private Vector3 initailPos;
-   private Rigidbody rb;
    public AnimationCurve yCurve;
-   private float timeLapsed = 0;	
+   private float timeLapsed = 0;
+   public string hitter;
 	
+   private int playerScore = 0;
+   private int BotScore = 0;
+	
+   public bool isPlaying = true;
+	
+   [SerializeField]
+   public Text ScoreText; 
 	
     void Start()
     {
-        initailPos = transform.position;
-		rb = GetComponent<Rigidbody>();
+        initailPos = transform.position;                                //---Ball intial position--//
 		
     }
+	void Update()
+	{
+		ScoreText.GetComponent<Text>().text = playerScore + ":" + BotScore;
+	}
 	
 	void FixedUpdate()
 	{
-		timeLapsed += Time.deltaTime; 
+		timeLapsed += Time.deltaTime;                                    //---Time for y curve--//
 	}
 	
-	private void OnCollisionEnter(Collision collision)
+	private void OnCollisionEnter(Collision collision)     
 	{
 		if(collision.transform.CompareTag("Walls"))
 		{
@@ -30,10 +41,54 @@ public class BallScript : MonoBehaviour
 			transform.position = initailPos;
 		}
 		
+		if(collision.transform.CompareTag("Net") && isPlaying)
+		{
+			if(hitter == "Player")
+			{
+				BotScore += 10;
+				hitter = "null";
+			}
+			else if(hitter == "Bot")
+			{
+				playerScore += 10;
+				hitter = "null";
+			}
+			StartCoroutine(HitToNet());
+		}
+		
 		if(collision.transform.CompareTag("Player") ||  collision.transform.CompareTag("Bot"))
 		{
 			GetComponent<Rigidbody>().MovePosition(new Vector3 (0, transform.position.y + yCurve.Evaluate(timeLapsed), 0));
 		}
+	}
+	
+	private void OnTriggerEnter(Collider other)
+	{
+
+		if(other.CompareTag("Out")  && isPlaying)
+		{
+			if(hitter == "Player")
+			{
+				playerScore += 10;
+				hitter = "null";
+			}
+			else if(hitter == "Bot")
+			{
+				BotScore += 10;
+				hitter = "null";
+			}
+			
+			isPlaying = false;
+		}
+		
+		
+	}
+	
+	IEnumerator HitToNet()
+	{
+		yield return new WaitForSeconds(3);
+		transform.position = initailPos;
+		isPlaying = false;
 	}
 
     
