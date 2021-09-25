@@ -21,7 +21,7 @@ public class BotScript : MonoBehaviour
 	
 	void Start()
 	{
-		targetPosition = transform.position;
+		targetPosition = transform.position;       //---Get the position of target--//
 		animator = GetComponent<Animator>();
 	
 	}
@@ -33,29 +33,29 @@ public class BotScript : MonoBehaviour
 	
 	void Move()
 	{
-		targetPosition = new Vector3(transform.position.x, 0.2f , ball.position.z);
+		targetPosition = new Vector3(transform.position.x, 0.2f , ball.position.z);   //---new target position according to ball//
 		transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-		
+		                                                      //---Move towards ball position--//
 	}
 	
-	private Vector3 PickTargets()
+	private Vector3 PickTargets()                           
 	{
-		int randomValue = Random.Range(0, targets.Length);
-		return targets[randomValue].position;
+		int randomValue = Random.Range(0, targets.Length);           //--Pick the random targets to hit by bot --//
+		return targets[randomValue].position;                       //--return the position of target based on random value--//
 	}
 	
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.CompareTag("Ball"))
+		if(other.CompareTag("Ball"))                                //--Bot hit the ball--//
 		{
 			BallHit.Play();
-			Vector3 dir = PickTargets() - transform.position;
-			Vector3 offset = new Vector3(0, 1f, 0);
+			Vector3 dir = PickTargets() - transform.position;        //---distance between random target position and bot--//
+		
 			
 			other.transform.position = Vector3.SmoothDamp(other.transform.position, PickTargets(), ref dir,force * Time.deltaTime);
-			other.GetComponent<Rigidbody>().velocity = dir.normalized * force;
+			other.GetComponent<Rigidbody>().velocity = dir.normalized * force; //--hit the ball with force in target dir --// 
 			
-			Vector3 ballDir = ball.position - transform.position;
+			Vector3 ballDir = ball.position - transform.position;   //--distance between ball and bot for left and right animation
 			
 			if(ballDir.z >= 0 )
 			{
@@ -64,7 +64,7 @@ public class BotScript : MonoBehaviour
 			else
 			    animator.Play("LeftSwing");
 			
-			ball.GetComponent<BallScript>().hitter = "Bot";
+			ball.GetComponent<BallScript>().hitter = "Bot";       //--Get the last hitter of ball as 'bot'--//
 			ball.GetComponent<BallScript>().isPlaying = true;
 		}
 	}

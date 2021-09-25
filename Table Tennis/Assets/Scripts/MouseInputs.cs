@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseInputs : MonoBehaviour
+public class MouseInputs : MonoBehaviour    ///---Mouse click movement for touch inputs--//
 {
     float IPosition;
 	Vector3 offset;
@@ -13,7 +13,7 @@ public class MouseInputs : MonoBehaviour
     void Start()
     {
         MainCamera = Camera.main;
-		IPosition = MainCamera.WorldToScreenPoint(transform.position).z;
+		IPosition = MainCamera.WorldToScreenPoint(transform.position).z;  //--Get the position of z and convert to screen point//
     }
 
     // Update is called once per frame
@@ -21,13 +21,13 @@ public class MouseInputs : MonoBehaviour
     {
         if(Dragging)
 		{
-			Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y , IPosition);
+			Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y , IPosition); //---get the mouse position
 			transform.position = MainCamera.ScreenToWorldPoint(position + new Vector3(offset.x, offset.y));
-			
+			                                     //--Move the player to the mouse position--//
 		}
     }
 	
-	void OnMouseDown()
+	void OnMouseDown()               //---If the mouse is click--//
 	{
 		if(!Dragging)
 		{
@@ -35,7 +35,7 @@ public class MouseInputs : MonoBehaviour
 		}
 	}
 	
-	void OnMouseUp()
+	void OnMouseUp()                //---If the mouse is not click--//
 	{
 		EndDrag();
 	}
@@ -43,7 +43,7 @@ public class MouseInputs : MonoBehaviour
 	public void BeginDrag()
 	{
 		Dragging = true;
-		offset = MainCamera.WorldToScreenPoint(transform.position) - Input.mousePosition;
+		offset = MainCamera.WorldToScreenPoint(transform.position) - Input.mousePosition;  //--get the position of player--//
 	}
 	
 	public void EndDrag()

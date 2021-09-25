@@ -8,13 +8,13 @@ public class MenuScript : MonoBehaviour
 	
   public AudioSource Cilck;
 	
-  public void StartTheGame()
+  public void StartTheGame()                   //--Start Game--//
   {
 	  Cilck.Play();
 	 SceneManager.LoadScene("Game"); 
   }
 	
-  public void QuitTheGame()
+  public void QuitTheGame()                  //--Quit game--//
   {
 	  Cilck.Play();
 	 Application.Quit();
