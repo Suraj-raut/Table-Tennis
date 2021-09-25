@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour                                ///---G
 	Vector3 aimTargetInitialPos;
 	private Touch touch;
 	
+	public AudioSource BallHit;
 	
 	
 	
@@ -61,6 +62,7 @@ public class PlayerScript : MonoBehaviour                                ///---G
 	{
 		if(other.CompareTag("Ball"))                                             //--If the ball collided with bat--//                       
 		{
+			BallHit.Play();
 			Vector3 dir = aimTarget.position - transform.position;              //--Distance betwn target postion & Player position
 			Vector3 offset = new Vector3(0, 1f, 0);
 			

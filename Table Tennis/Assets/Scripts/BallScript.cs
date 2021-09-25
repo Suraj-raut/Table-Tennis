@@ -14,7 +14,9 @@ public class BallScript : MonoBehaviour
    public static int BotScore = 0;
 	
    public bool isPlaying = true;
-	
+  
+	public AudioSource RandomHit;
+
 	
     void Start()
     {
@@ -37,12 +39,14 @@ public class BallScript : MonoBehaviour
 	{
 		if(collision.transform.CompareTag("Walls"))
 		{
+			RandomHit.Play();
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
 			transform.position = initailPos;
 		}
 		
 		if(collision.transform.CompareTag("Net") && isPlaying)
 		{
+			RandomHit.Play();
 			if(hitter == "Player")
 			{
 				BotScore += 10;
@@ -64,6 +68,7 @@ public class BallScript : MonoBehaviour
 	
 	private void OnTriggerEnter(Collider other)
 	{
+		RandomHit.Play();
 
 		if(other.CompareTag("Out")  && isPlaying)
 		{

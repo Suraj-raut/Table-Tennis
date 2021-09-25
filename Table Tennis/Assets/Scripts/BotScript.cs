@@ -15,6 +15,7 @@ public class BotScript : MonoBehaviour
 	private Vector3 targetPosition = Vector3.zero;
 	
 	private float force = 3f;
+	public AudioSource BallHit;
 	
 	
 	
@@ -47,6 +48,7 @@ public class BotScript : MonoBehaviour
 	{
 		if(other.CompareTag("Ball"))
 		{
+			BallHit.Play();
 			Vector3 dir = PickTargets() - transform.position;
 			Vector3 offset = new Vector3(0, 1f, 0);
 			
