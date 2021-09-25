@@ -10,13 +10,11 @@ public class BallScript : MonoBehaviour
    private float timeLapsed = 0;
    public string hitter;
 	
-   private int playerScore = 0;
-   private int BotScore = 0;
+   public static int playerScore = 0;
+   public static int BotScore = 0;
 	
    public bool isPlaying = true;
 	
-   [SerializeField]
-   public Text ScoreText; 
 	
     void Start()
     {
@@ -25,7 +23,9 @@ public class BallScript : MonoBehaviour
     }
 	void Update()
 	{
-		ScoreText.GetComponent<Text>().text = playerScore + ":" + BotScore;
+		
+		
+		
 	}
 	
 	void FixedUpdate()

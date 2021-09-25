@@ -49,19 +49,10 @@ public class PlayerScript : MonoBehaviour                                ///---G
 			touch = Input.GetTouch(0);                   //--Touch count number = touch number--//
 			if(touch.phase == TouchPhase.Moved)         // --Is finger moving--//
 			{
-				transform.Translate(new Vector3(transform.position.z + touch.deltaPosition.x, 0, transform.position.x + touch.deltaPosition.y) * speed * Time.deltaTime);
+				transform.Translate(new Vector3(touch.deltaPosition.y, 0, touch.deltaPosition.x) * speed * Time.deltaTime);
 			}                                            //--Move the object as per touch movement--//
 		}
 		
-		//Mouse movement
-		if(Input.mousePosition.x <= transform.position.z)
-		{
-			transform.Translate(new Vector3(0, 0, Input.mousePosition.x) * speed * Time.deltaTime);
-		}
-		else
-		{
-			transform.Translate(new Vector3(0, 0, -Input.mousePosition.x) * speed * Time.deltaTime);
-		}
 		
     }
 	
