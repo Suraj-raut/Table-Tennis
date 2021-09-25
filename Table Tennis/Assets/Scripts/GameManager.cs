@@ -15,11 +15,6 @@ public class GameManager : MonoBehaviour
 	private GameObject WinningPanel;
 	[SerializeField]
 	private GameObject WinningText;
-	
-	public AudioSource WinningSound;
-	public AudioSource LosingSound;
-	
-	
   
     // Update is called once per frame
     void Update()
@@ -32,17 +27,16 @@ public class GameManager : MonoBehaviour
 			WinningPanel.SetActive(true);
 			if(BallScript.playerScore == 90)
 			{
-				WinningSound.Play();
 				WinningText.GetComponent<Text>().text = "Congratulations You Win..!!!";
 			}
 			else if(BallScript.BotScore == 90)
 			{
-				LosingSound.Play();
 				WinningText.GetComponent<Text>().text = "Sorry You Lose";
 			}
 			
 		}
 		
+	
     }
 	
 	public void PlayAgain()

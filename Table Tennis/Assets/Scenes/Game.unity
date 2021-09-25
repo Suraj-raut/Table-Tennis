@@ -984,7 +984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -1922,6 +1922,8 @@ MonoBehaviour:
   hitter: 
   isPlaying: 1
   RandomHit: {fileID: 1136658343}
+  WinningSound: {fileID: 992661703}
+  LosingSound: {fileID: 1233091724}
 --- !u!96 &1112157617
 TrailRenderer:
   serializedVersion: 2
@@ -2844,7 +2846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1332381, y: 0.5}
   m_AnchorMax: {x: 0.943, y: 0.8216956}
-  m_AnchoredPosition: {x: -2.4000015, y: 1}
+  m_AnchoredPosition: {x: -2.399994, y: 1}
   m_SizeDelta: {x: 4.3408203, y: 1.8475113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1474996781

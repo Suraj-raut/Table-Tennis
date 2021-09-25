@@ -22,8 +22,6 @@ public class PlayerScript : MonoBehaviour                                ///---G
 	public AudioSource BallHit;
 	
 	
-	
-
    	void Start()
 	{
 		animator = GetComponent<Animator>();                          //--Player Bat Animation--//
@@ -60,7 +58,8 @@ public class PlayerScript : MonoBehaviour                                ///---G
 	
 	private void OnTriggerEnter(Collider other)                                  //---Player Bat collision--//
 	{
-		if(other.CompareTag("Ball"))                                             //--If the ball collided with bat--//                       
+		
+		if(other.CompareTag("Ball"))                                             //--If the ball collided with bat--//                  
 		{
 			BallHit.Play();
 			Vector3 dir = aimTarget.position - transform.position;              //--Distance betwn target postion & Player position
@@ -84,5 +83,6 @@ public class PlayerScript : MonoBehaviour                                ///---G
 			ball.GetComponent<BallScript>().isPlaying = true;
 			
 		}
+		
 	}
 }

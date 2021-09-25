@@ -23,12 +23,7 @@ public class BallScript : MonoBehaviour
         initailPos = transform.position;                                //---Ball intial position--//
 		
     }
-	void Update()
-	{
-		
-		
-		
-	}
+	
 	
 	void FixedUpdate()
 	{
@@ -37,7 +32,7 @@ public class BallScript : MonoBehaviour
 	
 	private void OnCollisionEnter(Collision collision)     
 	{
-		if(collision.transform.CompareTag("Walls"))
+		if(collision.transform.CompareTag("Walls"))                  
 		{
 			RandomHit.Play();
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
